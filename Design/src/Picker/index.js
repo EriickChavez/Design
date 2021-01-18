@@ -38,7 +38,6 @@ export default (props) => {
     fetch('http://localhost:3000/uploadfile/', {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
         'Content-Type': 'multipart/form-data',
       },
       body: formData,

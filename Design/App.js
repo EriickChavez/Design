@@ -25,20 +25,24 @@ import {createUploadLink} from 'apollo-upload-client';
 const App: () => React$Node = () => {
   const client = new ApolloClient({
     link: createUploadLink({
-      uri: 'http://localhost:3000/',
+      uri: 'http://localhost:4000/graphql',
     }),
     cache: new InMemoryCache(),
+    headers: {
+      'Accept': 'application/json',  // It can be used to overcome cors errors
+      'Content-Type': 'multipart/form-data'
+    },
   });
 
   return (
     <>
       <ApolloProvider client={client}>
         <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
-          <Container />
-        </SafeAreaView>
+          <UploadForm />
       </ApolloProvider>
     </>
   );
 };
+
+import UploadForm from "./src/Upload/__index.js";
 export default App;
