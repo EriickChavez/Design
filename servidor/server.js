@@ -33,24 +33,21 @@ const resolvers = {
       //   type: 'image/jpeg',
       //   name: 'picture-1610992012840'
       // }
+      console.log(file)
 
-      let json = ''
-      const _fd = new _FormData();
-      _fd.set("file",file._parts[0][1])
       try {
         const response = await fetch('http://localhost:4000/uploadfile/', {
           method: 'post',
           headers:{
             contentType:false
           },
-          body: JSON.stringify(_fd),
+          body: JSON.stringify(file),
         });
-        json = await response.json();
+        const json = await response.json();
         console.log(json);
       } catch (e) {
         console.log("error c", e.message)
       }
-      return json;
 
     },
   },
